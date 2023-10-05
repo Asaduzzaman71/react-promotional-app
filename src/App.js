@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Dashboard from "./pages/admin";
 import UserList from './pages/admin/users';
@@ -8,12 +8,15 @@ import './styles/plugins/fontawesome-free/css/all.min.css'
 
 function App() {
   return (
-    <Routes>
-            <Route path="/" element={ <Navigate to='/admin' /> } />
-            <Route path="/admin" element={ <Dashboard /> } />
-            <Route path="/admin/users" element={ <UserList /> } />
-            <Route path="/admin/users/create" element={ <UserCreate /> } />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+              <Route path="/" element={ <Navigate to='/admin' /> } />
+              <Route path="/admin" element={ <Dashboard /> } />
+              <Route path="/admin/users" element={ <UserList /> } />
+              <Route path="/admin/users/create" element={ <UserCreate /> } />
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 

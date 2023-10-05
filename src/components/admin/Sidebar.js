@@ -6,12 +6,11 @@ export default function Sidebar(){
     const [activeMenu, setActiveMenu] = useState('dashboard');
     const [activeSubMenu, setActiveSubMenu] = useState('');
     const [isCollapseMenu, setIsCollapseMenu] = useState(false)
-
     const isActiveMenu = (menu, subMenu = '') => {
         if (menu == activeMenu) {
-            setIsCollapseMenu(!isCollapseMenu)
-        } else {
             setIsCollapseMenu(true)
+        } else {
+            setIsCollapseMenu(!isCollapseMenu)
         }
         setActiveMenu(menu)
         setActiveSubMenu(subMenu)
@@ -52,31 +51,31 @@ export default function Sidebar(){
                 </div>
                 <nav className="mt-2">
                     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li className='nav-item' onClick={()=>isActiveMenu('dashoard')}>
-                            <NavLink to="/admin" className={(navInfo)=> navInfo.isActive ? 'nav-link active': 'nav-link'}>
+                        <li className={`nav-item ${ isCurrent('dashboard') ? "menu-open" : ""}`}  onClick={()=>isActiveMenu('dashoard')}>
+                            <NavLink to="/admin" className='nav-link' end>
                                 <i className="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Dashboard {isCurrent('dashboard') ? 'true' : 'false'}
                                 </p>
                             </NavLink>
                         </li>
-                        <li className={`nav-item ${isCurrent('user') == true ? "menu-open" : ""}`} onClick={()=>isActiveMenu('user')}>
-                            <NavLink to="/admin/users" className={(navInfo)=> navInfo.isActive ? 'nav-link active': 'nav-link'}>        
+                        <li className={`nav-item ${ isCurrent('user') ? "menu-open" : ""}`} >
+                            <NavLink to="/admin/users" className='nav-link' onClick={()=>isActiveMenu('user')}>        
                                 <i className="nav-icon fas fa-chart-pie"></i>
                                 <p>
-                                    Users
+                                    Users {isCurrent('user') ? 'true' : 'false'}
                                     <i className="right fas fa-angle-left"></i>
                                 </p>
                             </NavLink>
                             <ul className="nav nav-treeview">
                                 <li className="nav-item">
-                                    <NavLink to="/admin/users" className={(navInfo)=> navInfo.isActive ? 'nav-link active': 'nav-link'}>
+                                    <NavLink to="/admin/users" className='nav-link'>
                                         <i className="far fa-circle nav-icon"></i>
                                         <p>List</p>
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to="/admin/users/create" className={(navInfo)=> navInfo.isActive ? 'nav-link active': 'nav-link'}>
+                                    <NavLink to="/admin/users/create" className='nav-link'>
                                         <i className="far fa-circle nav-icon"></i>
                                         <p>Create</p>
                                     </NavLink>
